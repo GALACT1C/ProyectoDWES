@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+    {% block nav %}
+        <nav>
+            <div class="logo">
+                {% set page = app.request.attributes.get('_route') %}
+                <a href="{{ path('inicio') }}" class="{{ page=='inicio' ? 'active' : ''}}"><img src="{{asset('logo.png', 'img')}}"><sub>独自</sub><p></p></a>
+            </div>
+            <div class="username" align="center">
+            <h4>{{ usuario }}</h4>
+            </div>
+            <div class="login">
+                {% set page = app.request.attributes.get('_route') %}
+                <a href="{{ path('login') }}" class="{{ page=='login' ? 'active' : ''}}"><img src="{{asset('login.png', 'img')}}"width="40px"></a>
+            </div>
+            <div class="menu-icon">
+            <span></span>
+            </div>
+        </nav>
+    {% endblock %}
+    {% block menu %}
+            <section class="overlay-menu">
+            <div class="container">
+                <div class="row">
+                <div class="main-menu">
+                    <ul>
+                        {% set page = app.request.attributes.get('_route') %}
+                        <li>
+                            <a href="{{ path('inicio') }}" class="{{ page=='inicio' ? 'active' : ''}}">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('login') }}" class="{{ page=='login' ? 'active' : ''}}">Login</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('productos') }}" class="{{ page=='productos' ? 'active' : ''}}">Productos</a>
+                        </li>
+                        <hr>
+                        <li>
+                            <a href="{{ path('nosotros') }}" class="{{ page=='nosotros' ? 'active' : ''}}">Sobre nosotros</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('servicios') }}" class="{{ page=='servicios' ? 'active' : ''}}">Servicios</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('contacta') }}" class="{{ page=='contacta' ? 'active' : ''}}">Contacto</a>
+                        </li>
+                    </ul>
+                    <p>Para personas con estilo propio</p>
+                </div>
+                </div>
+            </div>
+            </section>
+    {% endblock %}
+    {% block footer %}
+        <footer>
+            <div class="container-fluid">
+                <div class="col-md-12">
+                    <p>Copyright &copy; Highway | Designed by Carlos Tamarit Martínez</p>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="grid-portfolio" id="portfolio">
+        <div style="color:white;background:black; width:100%; text-align: center;">
+            <h1>PRODUCTOS</h1>
+        </div>
+
+        <div align="center" style="color:white; font-size:20px;">
+                {% set currentProducto = app.request.attributes.get('producto') %}
+                <a href="{{ path('productos',{ producto : 'camisetas'}) }}" currentProducto=="camisetas">Camisetas</a> |
+                <a href="{{ path('productos',{ producto : 'pantalones'}) }}" currentProducto=="pantalones">Pantalones</a> |
+                <a href="{{ path('productos',{ producto : 'zapatillas'}) }}" currentProducto=="zapatillas">Zapatillas</a>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                        {% set lowerLimit = (currentPage - 1) * itemsPerPage %}
+                        {% set upperLimit = currentPage * itemsPerPage + 1 %}
+                        {% for producto in data %}
+                            {% if loop.index > lowerLimit and loop.index < upperLimit %}
+                        <div class="portfolio-item">
+                                <div class="thumb">
+                                    <a href="{{ asset(producto.getImagen(),'img') }}"><div class="hover-effect">
+                                        <div class="hover-content">
+                                            <h1 style="color:black">{{ producto.getTitulo() }}</h1>
+                                            <p style="color:#FF0000">{{ producto.getMaterial() }} | {{ producto.getPrecio() }}</p>
+                                        </div>
+                                    </div></a>
+                                    <div class="image">
+                                        <img src="{{ asset(producto.getImagen(),'img') }}">
+                                    </div>
+                                </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                </div>
+            </div>
+
+                {% set lastPage = (((data|length)/itemsPerPage)|round(0,'ceil')) %}
+				{% set remainder = ((((data|length)/itemsPerPage)|round(0,'ceil'))*itemsPerPage-(data|length)) %}
+				{% if lastPage == currentPage and remainder != 0 %}
+
+					{% for dummyTours in 1..remainder %}
+
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="tm-tours-box-1">
+						<img src="img/dummyproducto.png" alt="image" class="img-responsive">
+						<div class="tm-tours-box-1-info">
+							<div class="tm-tours-box-1-info-left">
+								<p class="text-uppercase margin-bottom-20">&nbsp;</p>	
+								<p class="gray-text">&nbsp;</p>
+							</div>
+							<div class="tm-tours-box-1-info-right">
+								<p class="gray-text tours-1-description">&nbsp;</p>	
+							</div>							
+						</div>
+						<div class="tm-tours-box-1-link">
+							<div class="tm-tours-box-1-link-left">
+								&nbsp;
+							</div>
+							<a href="#" class="tm-tours-box-1-link-right">
+								&nbsp;								
+							</a>							
+						</div>
+					</div>					
+				</div>
+
+					{% endfor %}	
+				{% endif %}
+
+        </div>
+        <div align="center" style="color:white; font-size:30px;">
+            {% for paginator in 1..lastPage %}
+            <a href="{{ path('productos',{ producto : currentProducto, currentPage : paginator }) }} {{ currentPage == paginator ? ' active ' : '' }}">{{ paginator }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+    
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+{% endblock %}

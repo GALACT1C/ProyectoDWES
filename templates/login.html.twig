@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div id="video-container">
+        <div class="video-overlay"></div>
+        <div class="video-content" style="display: flex; justify-content: center; align-items: center;">
+            <div class="form-style-5">
+                <form action="/recibelogin" method="post">
+                <h1 align="center" style="color:white">INICIA SESIÓN</h1>
+                <fieldset>
+                <input type="text" name="usuario" placeholder="Usuario *">
+                <input type="text" name="correo" placeholder="Contraseña *">  
+                </fieldset>
+                <input type="submit" value="LOGIN" />
+                </form>
+                </div>
+        </div>
+        <video autoplay="" loop="" muted>
+        	<source src="/videos/hong-kong.mp4" type="video/mp4" />
+        </video>
+    </div>
+
+
+    <div class="full-screen-portfolio" id="portfolio">
+        <div class="container-fluid">
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="/js/vendor/bootstrap.min.js"></script>
+    
+    <script src="/js/plugins.js"></script>
+    <script src="/js/main.js"></script>
+{% endblock %}

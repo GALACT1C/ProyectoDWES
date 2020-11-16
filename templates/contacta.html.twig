@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div id="video-container">
+        <div class="video-overlay"></div>
+        <div class="video-content" style="display: flex; justify-content: center; align-items: center;">
+            <div class="form-style-5">
+                <form action="/recibelogin" method="post">
+                <h1 align="center" style="color:white">Contacta con nosotros</h1>
+                <br>
+                <fieldset>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Tu nombre..." required="">
+                <input name="email" type="email" class="form-control" id="email" placeholder="Tu email..." required="">
+                <textarea name="message" rows="6" class="form-control" id="message" placeholder="Tu mensaje..." required=""></textarea> 
+                </fieldset>
+                <input type="submit" value="ENVIAR" />
+                </form>
+                </div>
+        </div>
+        <video autoplay="" loop="" muted>
+        	<source src="/videos/hong-kong.mp4" type="video/mp4" />
+        </video>
+    </div>
+
+
+    <div class="full-screen-portfolio" id="portfolio">
+        <div class="container-fluid">
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="/js/vendor/bootstrap.min.js"></script>
+    
+    <script src="/js/plugins.js"></script>
+    <script src="/js/main.js"></script>
+{% endblock %}
